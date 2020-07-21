@@ -45,6 +45,7 @@
 #include <string.h> // For mem* functions.
 
 #include "chip-zcl/chip-zcl-zpro-codec.h" // For EmberApsFrame
+#include "support/CHIPLogging.h"
 
 /**
  * @brief Defines binding types.
@@ -1845,7 +1846,7 @@ typedef struct
  */
 #define MEMSET(d, v, l) memset(d, v, l)
 #define MEMCOPY(d, s, l) memcpy(d, s, l)
-#define MEMMOVE(d, s, l) memmove(d, s, l)
+//#define MEMMOVE(d, s, l) memmove(d, s, l)
 #define MEMPGMCOPY(d, s, l) memcpy(d, s, l)
 #define MEMCOMPARE(s0, s1, l) memcmp(s0, s1, l)
 #define MEMPGMCOMPARE(s0, s1, l) memcmp(s0, s1, l)
@@ -1911,8 +1912,8 @@ typedef struct
 #define MAIN_FUNCTION_ARGUMENTS
 
 // Stubs to just silence some compile errors
-#define emberAfPrint(...) /* */
 #define emberAfPrintEnabled(...) false
+#define emberAfPrint(...)
 #define emberAfPrintln(...)     /* */
 #define emberAfPrintBuffer(...) /* */
 

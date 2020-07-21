@@ -28,6 +28,7 @@
 #include <lib/support/CodeUtils.h>
 #include <setup_payload/SetupPayload.h>
 #include <support/ErrorStr.h>
+#include <support/logging/CHIPLogging.h>
 
 namespace chip {
 
@@ -84,17 +85,18 @@ exit:
     return err;
 }
 
-extern "C" {
+} // namespace DeviceManager
+} // namespace chip
+
+using namespace chip::Logging;
 void emberAfPostAttributeChangeCallback(uint8_t endpoint, EmberAfClusterId clusterId, EmberAfAttributeId attributeId, uint8_t mask,
                                         uint16_t manufacturerCode, uint8_t type, uint8_t size, uint8_t * value)
 {
-    CHIPDeviceManagerCallbacks * cb = CHIPDeviceManager::GetInstance().GetCHIPDeviceManagerCallbacks();
+    chip::DeviceManager::CHIPDeviceManagerCallbacks * cb =
+        chip::DeviceManager::CHIPDeviceManager::GetInstance().GetCHIPDeviceManagerCallbacks();
     if (cb != nullptr)
     {
+        ChipLogProgress(Zcl, "Logging using chip logger. Got attribute change callback");
         cb->PostAttributeChangeCallback(endpoint, clusterId, attributeId, mask, manufacturerCode, type, size, value);
     }
 }
-} // extern "C"
-
-} // namespace DeviceManager
-} // namespace chip

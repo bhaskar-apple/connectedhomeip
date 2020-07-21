@@ -26,14 +26,13 @@
 #include "DataModelHandler.h"
 #include "LEDWidget.h"
 
-extern "C" {
+// extern "C" {
 #include "attribute-storage.h"
 #include "chip-zcl/chip-zcl-zpro-codec.h"
 #include "gen/attribute-id.h"
 #include "gen/cluster-id.h"
 #include "gen/znet-bookkeeping.h"
 #include "util.h"
-}
 
 using namespace ::chip;
 

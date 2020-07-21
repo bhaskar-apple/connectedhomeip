@@ -446,7 +446,7 @@ typedef struct
  *   and pass a pointer to that location around during
  *   command processing
  */
-typedef struct
+struct EmberAfClusterCommand
 {
     /**
      * APS frame for the incoming message
@@ -465,7 +465,9 @@ typedef struct
     uint8_t direction;
     EmberAfInterpanHeader * interPanHeader;
     uint8_t networkIndex;
-} EmberAfClusterCommand;
+
+    EmberAfClusterCommand(){};
+};
 
 /**
  * @brief Endpoint type struct describes clusters that are on the endpoint.
